@@ -1,7 +1,7 @@
 
 import React from "react";
-import { usePagination, DOTS } from '../components/usePagination';
-import "../components/Pagination.css";
+import { usePagination, DOTS } from '../hooks/usePagination';
+import "../styles/Pagination.css";
 
 const Pagination = props => {
     const {
@@ -35,25 +35,19 @@ const Pagination = props => {
 
     return (
         <ul className="pagination-container">
-            {/* Left navigation arrow */}
             <li className="pagination-item" onClick={onPrevious}>
                 <div className="arrow left" />
             </li>
             {paginationRange.map(pageNumber => {
-
-                // If the pageItem is a DOT, render the DOTS unicode character
                 if (pageNumber === DOTS) {
                     return <li className="pagination-item dots">&#8230;</li>;
                 }
-
-                // Render our Page Pills
                 return (
                     <li className="pagination-item" onClick={() => onPageChange(pageNumber)}>
                         {pageNumber}
                     </li>
                 );
             })}
-            {/*  Right Navigation arrow */}
             <li className="pagination-item" onClick={onNext}>
                 <div className="arrow right" />
             </li>

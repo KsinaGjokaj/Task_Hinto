@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from "react";
-import '../components/FetchData.css';
+import React, { useEffect, useState } from "react";
+import '../styles/FetchData.css';
 import Pagination from "./Pagination";
 
 let PageSize = 10;
@@ -7,7 +7,6 @@ let PageSize = 10;
 const FetchData = () => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    //pagination
 
     const getApi = (_start) => {
         fetch(`https://jsonplaceholder.typicode.com/posts?_start=${(_start - 1) * 10}&_limit=10`)
@@ -17,15 +16,12 @@ const FetchData = () => {
 
     useEffect(() => {
         getApi(currentPage);
-
     }, [currentPage])
 
 
     console.log(`currentPage ${currentPage}`);
     return (
-        <div >
-            <h1>Fetch dataa</h1>
-
+        <div>
             <table className="table">
                 <tr>
                     <th>ID</th>
@@ -43,16 +39,17 @@ const FetchData = () => {
                 pageSize={PageSize}
                 onPageChange={page => setCurrentPage(page)}
             />
-        </div >
+        </div>
+
     );
 }
+
 const TableRow = ({ item }) => {
     const [desc, setDesc] = useState();
     return (
         <tr key={item.id} onClick={() => {
             setDesc(item.body)
         }}>
-
             <td>{item.id}</td>
             <td>{item.userId}</td>
             <td className="title">
