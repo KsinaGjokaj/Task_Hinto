@@ -29,7 +29,7 @@ const FetchData = () => {
                     <th>TITLE</th>
                 </tr>
                 {data && data.length > 0 && data.map((item, index) => (
-                    <TableRow item={item} />
+                    <TableRow key={item.id} item={item} />
                 ))
                 }
             </table>
@@ -45,7 +45,7 @@ const FetchData = () => {
 }
 
 const TableRow = ({ item }) => {
-    const [desc, setDesc] = useState();
+    const [desc, setDesc] = useState('');
     return (
         <tr key={item.id} onClick={() => {
             setDesc(item.body)
